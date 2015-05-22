@@ -3,7 +3,7 @@ jlg-i18n
 Angular module for i18n, with pluralization, interpolation, and locale update
 without refreshing the Angular app.
 
-This module ```jlgI18n``` brings:
+This project brings one Angular module ```jlgI18n``` with:
 
 - the filter ```i18n```,
 - the service ```jlgI18nService```,
@@ -83,7 +83,9 @@ en-us.json:
 ```
 
 Translation files are stored in the ```i18n``` directory by default.
+
 The provider ```jlgI18nServiceProvider``` can specify an other directory using the ```jlgI18nServiceProvider.i18nDir``` setter.
+
 The provider ```jlgI18nServiceProvider``` can also specify a directory using the ```jlgI18nServiceProvider.localeDir``` setter for the locale.
 
 To translate expression, use the angular filter ```i18n``` like this:
