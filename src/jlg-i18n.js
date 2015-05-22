@@ -7,27 +7,50 @@
 		$filter('date').$stateful = true;
 	}]);
 
-	app.service('jlgI18nService', ['$locale', '$resource',
+	app.provider('jlgI18nService', ['$locale', '$resource',
 		function($locale, $resource) {
 
-			var i18nRes = $resource('i18n/:locale.json');
-			var localeRes = $resource('i18n/locale/locale_:locale.json');
-
-			this.refresh = function() {
-				console.log('start');
-				this.translation = i18nRes.get({locale: $locale.id});
-
-				var newLocale = localeRes.get({locale: $locale.id}, function(newLocale) {
-					for (var property in newLocale) {
-						if ($locale.hasOwnProperty(property)) {
-							console.log(property);
-							$locale[property] = newLocale[property];
-						}
-					}
-				});
+			var localeDir = 'bower_components/jlg-i18n/locale';
+			this.localeDir = function(value) {
+				if (value != undefined) {
+					localeDir = value;
+				}
+				return localeDir;
 			};
 
-			this.refresh();
+			var i18nDir = 'i18n';
+
+			this.i18nDir = function(value) {
+				if (value != undefined) {
+					i18nDir = value;
+				}
+				return i18nDir;
+			};
+
+			this.$get = ['$locale', '$resource', function($locale, $resource) {
+
+				var i18nRes = $resource(i18nDir + '/:locale.json');
+				var localeRes = $resource(localeDir + '/locale_:locale.json');
+
+				var result = {};
+				result.refresh = function() {
+					console.log('start');
+					this.translation = i18nRes.get({locale: $locale.id});
+
+					var newLocale = localeRes.get({locale: $locale.id}, function(newLocale) {
+						for (var property in newLocale) {
+							if ($locale.hasOwnProperty(property)) {
+								console.log(property);
+								$locale[property] = newLocale[property];
+							}
+						}
+					});
+				};
+
+				result.refresh();
+
+				return result;
+			}];
 		}
 	]);
 
