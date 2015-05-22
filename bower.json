@@ -7,6 +7,7 @@
     "node_modules",
     "bower_components",
     "test",
+    "scripts",
     "package.json",
     "Gruntfile.js",
     ".gitignore"
@@ -30,6 +31,6 @@
   },
   "devDependencies": {
     "angular": "~1.3.x",
-    "angular-resource": "~1.3.x"
+    "angular-i18n": "~1.3.x"
   }
 }

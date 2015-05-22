@@ -35,6 +35,7 @@
   },
   "scripts": {
     "postinstall": "bower install",
+    "locale": "node scripts/create_locale_files.js",
 
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
