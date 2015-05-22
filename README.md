@@ -1,6 +1,6 @@
 jlg-i18n
 ==========
-Angular module for i18n, with pluarlization and interpolation, and locale update
+Angular module for i18n, with pluralization and interpolation, and locale update
 without refreshing the Angular app.
 
 This module brings the filter ```i18n```.
@@ -14,8 +14,9 @@ This module brings the filter ```i18n```.
 
 
 Translation files are json files like this:
-```json
+
 fr-fr.json:
+```json
 {
 	"Hello": "Bonjour",
 	"How are you doing?": "Comment ça va ?",
@@ -32,10 +33,11 @@ fr-fr.json:
 		"1_1": "Vous avez 1 message et 1 erreur"
 	}
 }
-
+```
 
 
 es-co.json:
+```json
 {
 	"Hello": "Hola",
 	"How are you doing?": "Como esta?",
@@ -54,21 +56,75 @@ es-co.json:
 }
 ```
 
+Even for the original language you need a file for interpolation and pluralization purpose:
+
+en-us.json:
+```json
+{
+	"You have [[nbr]] message(s) and [[err]] error(s)": {
+		"@_@": "You have [[nbr]] messages and [[err]] errors",
+		"@_0": "You have [[nbr]] messages and no error",
+		"@_1": "You have [[nbr]] messages and 1 error",
+		"0_@": "You have no message and [[err]] error",
+		"0_0": "You have no message and no error",
+		"0_1": "You have no message and 1 error",
+		"1_@": "You have 1 message and [[err]] errors",
+		"1_0": "You have 1 message and no error",
+		"1_1": "You have 1 message and 1 error"
+	}
+}
+```
+
 To translate expression, use the angular filter ```i18n``` like this:
 
 ```html
 {{'Hello' | i18n}},<br/>
 {{'How are you doing?' | i18n}},<br/>
 {{'You have [[nbr]] message(s) and [[err]] error(s)' | i18n:4:0 }}.<br/>
+{{'You have [[nbr]] message(s) and [[err]] error(s)' | i18n:1:1 }}.<br/>
+{{'You have [[nbr]] message(s) and [[err]] error(s)' | i18n:5:3 }}.<br/>
 {{date | date:'fullDate'}}
 ```
 
+Output in French (fr-fr):
+```
+Bonjour,
+Comment ça va ?
+Vous avez 4 messages et pas d'erreur.
+Vous avez 1 message et 1 erreur.
+Vous avez 5 messages et 3 erreurs.
+vendredi 22 mai 2015
+```
 
-To update the locale, use the ```jlgI18nService``` service included in the module ```jlgI18n``` like in the example.
+Output in Spanish (Colombian) (es-co):
+```
+Hola,
+Como esta?
+Usted tiene 4 mensajes y ningún error.
+Usted tiene 1 mensaje y 1 error.
+Usted tiene 5 mensajes y 3 errores.
+viernes, 22 de mayo de 2015
+```
+
+Output in English (en-us):
+```
+Hello,
+How are you doing?
+You have 4 messages and no error.
+You have 1 message and 1 error.
+You have 5 messages and 3 errors.
+Friday, May 22, 2015
+```
+
+
+To update the locale without refreshing, use the ```jlgI18nService``` service included in the module ```jlgI18n``` like in the example.
 
 
 ##Example
 
+See the ```example``` directory on this github project.
+
+app.js file:
 ```javascript
 (function() {
 	'use strict';
@@ -76,12 +132,12 @@ To update the locale, use the ```jlgI18nService``` service included in the modul
 	var app = angular.module('myApp', ['jlgI18n']);
 
 	app.config(['jlgI18nServiceProvider', function(jlgI18nServiceProvider) {
-		// Set the locale directory of the jlg-i18n package. For instance:
-		jlgI18nServiceProvider.localeDir('../../bower_components/jlg-i18n/locale');
+		jlgI18nServiceProvider.localeDir('../locale');
 	}]);
 
 	app.controller('MyController', ['$scope', '$locale', 'jlgI18nService',
 		function($scope, $locale, i18nService) {
+			$scope.date = new Date();
 
 			$scope.locale = $locale;
 
@@ -91,8 +147,10 @@ To update the locale, use the ```jlgI18nService``` service included in the modul
 	]);
 })();
 
+
 ```
 
+index.html file:
 ```html
 <html>
 	<head>
@@ -117,11 +175,12 @@ To update the locale, use the ```jlgI18nService``` service included in the modul
 			{{date | date:'fullDate'}}
 		</p>
 
-		<script src="../../bower_components/angular/angular.min.js"></script>
-		<script src="../../bower_components/jlg-i18n/jlg-i18n.min.js"></script>
+		<script src="../bower_components/angular/angular.min.js"></script>
+		<script src="../jlg-i18n.min.js"></script>
 		<script src="app.js"></script>
 	</body>
 </html>
+
 ```
 
 

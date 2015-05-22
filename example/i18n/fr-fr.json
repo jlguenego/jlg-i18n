@@ -1,0 +1,15 @@
+{
+	"Hello": "Bonjour",
+
+	"You have [[nbr]] message(s) and [[err]] error(s)": {
+		"@_@": "Vous avez [[nbr]] messages et [[err]] erreurs",
+		"@_0": "Vous avez [[nbr]] messages et pas d'erreur",
+		"@_1": "Vous avez [[nbr]] messages et 1 erreur",
+		"0_@": "Vous n'avez pas de message et [[err]] erreurs",
+		"0_0": "Vous n'avez pas de message et pas d'erreur",
+		"0_1": "Vous n'avez pas de message et 1 erreur",
+		"1_@": "Vous avez 1 message et [[err]] erreurs",
+		"1_0": "Vous avez 1 message et pas d'erreur",
+		"1_1": "Vous avez 1 message et 1 erreur"
+	}
+}

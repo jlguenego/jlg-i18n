@@ -1,0 +1,13 @@
+{
+	"You have [[nbr]] message(s) and [[err]] error(s)": {
+		"@_@": "You have [[nbr]] messages and [[err]] errors",
+		"@_0": "You have [[nbr]] messages and no error",
+		"@_1": "You have [[nbr]] messages and 1 error",
+		"0_@": "You have no message and [[err]] error",
+		"0_0": "You have no message and no error",
+		"0_1": "You have no message and 1 error",
+		"1_@": "You have 1 message and [[err]] errors",
+		"1_0": "You have 1 message and no error",
+		"1_1": "You have 1 message and 1 error"
+	}
+}

@@ -1,0 +1,28 @@
+<html>
+	<head>
+	</head>
+
+	<body ng-app="myApp" ng-controller="MyController">
+		<h1>I18N</h1>
+		<p>Locale: {{locale.id}}</p>
+		<div>
+			<label ng-repeat="id in ['en-us', 'fr-fr', 'es-co']">
+				<input name="locale_id" type="radio"
+					ng-click="changeLocale(id)"
+					ng-checked="{{locale.id == id}}"/>
+					{{id}}
+			</label>
+		</div>
+		<p>
+			{{'Hello' | i18n}},<br/>
+			{{'You have [[nbr]] message(s) and [[err]] error(s)' | i18n:4:0 }}.<br/>
+			{{'You have [[nbr]] message(s) and [[err]] error(s)' | i18n:1:1 }}.<br/>
+			{{'You have [[nbr]] message(s) and [[err]] error(s)' | i18n:5:3 }}.<br/>
+			{{date | date:'fullDate'}}
+		</p>
+
+		<script src="../bower_components/angular/angular.min.js"></script>
+		<script src="../jlg-i18n.min.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
