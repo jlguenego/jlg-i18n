@@ -56,6 +56,11 @@
 					});
 				};
 
+				result.changeLocale = function(newLocaleId) {
+					$locale.id = newLocaleId;
+					result.refresh();
+				};
+
 				result.refresh();
 
 				return result;
