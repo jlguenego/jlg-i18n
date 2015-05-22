@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	var app = angular.module('jlgI18n', ['ngLocale', 'ngResource']);
+	var app = angular.module('jlgI18n', ['ngLocale']);
 
 	app.run(['$filter', function($filter) {
 		$filter('date').$stateful = true;
@@ -26,20 +26,30 @@
 				return i18nDir;
 			};
 
-			this.$get = ['$locale', '$resource', function($locale, $resource) {
-
-				var i18nRes = $resource(i18nDir + '/:locale.json');
-				var localeRes = $resource(localeDir + '/locale_:locale.json');
+			this.$get = ['$locale','$http', function($locale, $http) {
 
 				var result = {};
 				result.refresh = function() {
-					console.log('start');
-					this.translation = i18nRes.get({locale: $locale.id});
+					var self = this;
 
-					var newLocale = localeRes.get({locale: $locale.id}, function(newLocale) {
+					this.translation = {};
+
+					$http({
+						url: i18nDir + '/' + $locale.id + '.json',
+						cache: true
+					}).then(function(response) {
+						self.translation = response.data;
+					}).catch(function(error) {
+						console.error('error', error);
+					});
+
+					$http({
+						url: localeDir + '/locale_' + $locale.id + '.json',
+						cache: true
+					}).then(function(response) {
+						var newLocale = response.data;
 						for (var property in newLocale) {
 							if ($locale.hasOwnProperty(property)) {
-								console.log(property);
 								$locale[property] = newLocale[property];
 							}
 						}
@@ -58,7 +68,7 @@
 			var result = text;
 			var args = Array.prototype.slice.call(arguments, 1);
 			var translation = jlgI18nService.translation;
-			console.log(translation);
+
 
 			if (translation.hasOwnProperty(text)) {
 				result = translation[text];
