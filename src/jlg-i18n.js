@@ -7,8 +7,7 @@
 		$filter('date').$stateful = true;
 	}]);
 
-	app.provider('jlgI18nService', ['$locale', '$resource',
-		function($locale, $resource) {
+	app.provider('jlgI18nService', function() {
 
 			var localeDir = 'bower_components/jlg-i18n/locale';
 			this.localeDir = function(value) {
@@ -52,7 +51,7 @@
 				return result;
 			}];
 		}
-	]);
+	);
 
 	app.filter('i18n', ['jlgI18nService', function(jlgI18nService) {
 		var filter = function(text) {
