@@ -1,6 +1,6 @@
 {
   "name": "jlg-i18n",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Angular module for i18n, with pluralization and interpolation.",
   "main": "index.js",
   "repository": {
