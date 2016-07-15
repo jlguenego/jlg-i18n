@@ -11,8 +11,7 @@ This project brings one Angular module ```jlgI18n``` with:
 
 
 
-
-##Syntax
+## Syntax
 
 ```html
 <script src="path/to/angular.min.js"></script>
@@ -26,7 +25,7 @@ fr-fr.json:
 ```json
 {
 	"Hello": "Bonjour",
-	"How are you doing?": "Comment ça va ?",
+	"How are you doing?": "Comment ï¿½a va ?",
 
 	"You have [[nbr]] message(s) and [[err]] error(s)": {
 		"@_@": "Vous avez [[nbr]] messages et [[err]] erreurs",
@@ -51,13 +50,13 @@ es-co.json:
 
 	"You have [[nbr]] message(s) and [[err]] error(s)": {
 		"@_@": "Usted tiene [[nbr]] mensajes y [[err]] errores",
-		"@_0": "Usted tiene [[nbr]] mensajes y ningún error",
+		"@_0": "Usted tiene [[nbr]] mensajes y ningï¿½n error",
 		"@_1": "Usted tiene [[nbr]] mensajes y 1 error",
 		"0_@": "No tiene mensajes y [[err]] errores",
 		"0_0": "No tiene mensajes ni errores",
 		"0_1": "No tiene mensajes y 1 error",
 		"1_@": "Usted tiene 1 mensaje y [[err]] errores",
-		"1_0": "Usted tiene 1 mensaje y ningún error",
+		"1_0": "Usted tiene 1 mensaje y ningï¿½n error",
 		"1_1": "Usted tiene 1 mensaje y 1 error"
 	}
 }
@@ -103,7 +102,7 @@ To translate expression, use the angular filter ```i18n``` like this:
 Output in French (fr-fr):
 ```
 Bonjour,
-Comment ça va ?
+Comment ï¿½a va ?
 Vous avez 4 messages et pas d'erreur.
 Vous avez 1 message et 1 erreur.
 Vous avez 5 messages et 3 erreurs.
@@ -114,7 +113,7 @@ Output in Spanish (Colombian) (es-co):
 ```
 Hola,
 Como esta?
-Usted tiene 4 mensajes y ningún error.
+Usted tiene 4 mensajes y ningï¿½n error.
 Usted tiene 1 mensaje y 1 error.
 Usted tiene 5 mensajes y 3 errores.
 viernes, 22 de mayo de 2015
@@ -134,7 +133,7 @@ Friday, May 22, 2015
 To update the locale without refreshing, use the ```jlgI18nService``` service included in the module ```jlgI18n``` like in the example.
 
 
-##Example
+## Example
 
 See the ```example``` directory on this github project.
 
@@ -146,6 +145,8 @@ app.js file:
 	var app = angular.module('myApp', ['jlgI18n']);
 
 	app.config(['jlgI18nServiceProvider', function(jlgI18nServiceProvider) {
+		// For browserify set the directory from the node_modules directory
+		// jlgI18nServiceProvider.localeDir('../node_modules/jlg-i18n/locale');
 		jlgI18nServiceProvider.localeDir('../locale');
 	}]);
 
@@ -198,9 +199,9 @@ index.html file:
 ```
 
 
-##Installation
+## Installation
 
-###Bower
+### Bower
 
 [Bower](http://bower.io/) installs the minimum to run the library, not the test files.
 
@@ -208,7 +209,15 @@ index.html file:
 bower install jlg-i18n
 ```
 
-##Build
+### Npm (browserify)
+
+[Npm](http://npmjs.org/) installs the minimum to run the library, not the test files.
+
+```sh
+npm install jlg-i18n
+```
+
+## Build
 
 If you clone the Git repository, then you need **npm** to run the build.
 
@@ -218,16 +227,16 @@ npm run locale
 grunt
 ```
 
-##Issues
+## Issues
 
 You can submit your issues on the
 [Github system](https://github.com/jlguenego/jlg-i18n/issues).
 
-##License
+## License
 
 [MIT](http://opensource.org/licenses/MIT)
 
-##Authors
+## Authors
 - Yannis THOMIAS
 - Juan TROCHEZ
-- Jean-Louis GUÉNÉGO
+- Jean-Louis GUï¿½Nï¿½GO

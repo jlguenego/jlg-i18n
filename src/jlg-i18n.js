@@ -8,7 +8,6 @@
 	}]);
 
 	app.provider('jlgI18nService', function() {
-
 			var localeDir = 'bower_components/jlg-i18n/locale';
 			this.localeDir = function(value) {
 				if (value != undefined) {
